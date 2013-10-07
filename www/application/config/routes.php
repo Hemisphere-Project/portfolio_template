@@ -38,7 +38,8 @@
 |
 */
 
-$route['default_controller'] = 'projects/prjkts/projects_thumb_list';
+//$route['default_controller'] = 'projects/prjkts/projects_list';
+$route['default_controller'] = 'projects/static_pages/home';
 
 $route['backoffice'] = 'backoffice/projects'; // pour l'instant
 

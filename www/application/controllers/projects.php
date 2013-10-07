@@ -16,7 +16,6 @@ class Projects extends CI_Controller {
 
 	public function static_pages($pageName=NULL)
 	{
-		
 		$data['title'] = $pageName;
 /*		if($pageName != self::ABOUT && $pageName != self::HOME){
 			
