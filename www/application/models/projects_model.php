@@ -38,7 +38,7 @@ class Projects_model extends CI_Model {
 		// return $query->row_array();
 	}
 	
-	//retieve a single project
+	//retrieve a single project
 	public function get_project($dir){// to be replaced by id
 		
 		$query = $this->db->get_where('projects', array('dir' => $dir));

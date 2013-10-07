@@ -1,0 +1,57 @@
+-- phpMyAdmin SQL Dump
+-- version OVH
+-- http://www.phpmyadmin.net
+--
+-- Client: mysql51-90.bdb
+-- Généré le : Lun 07 Octobre 2013 à 08:52
+-- Version du serveur: 5.1.66
+-- Version de PHP: 5.3.8
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Base de données: `alainbarm2013db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `projects`
+--
+
+CREATE TABLE IF NOT EXISTS `projects` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `position` bigint(20) NOT NULL,
+  `title` varchar(256) NOT NULL,
+  `year` year(4) NOT NULL,
+  `type` varchar(512) NOT NULL,
+  `description_short` text NOT NULL,
+  `description_long` text NOT NULL,
+  `dir` varchar(512) NOT NULL,
+  `thumb_name` varchar(512) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `position` (`position`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=98 ;
+
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'hello@alainbarthelemy.com', 'f804842090fcf298d9c75738f96c2194');
+
