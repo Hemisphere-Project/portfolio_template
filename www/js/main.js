@@ -35,11 +35,7 @@ $(window).bind("load", function() {
 
 
 
-// rest of the main js
 $(document).ready(function() {
-  //console.log('here we go again');
-  Clock.start();
-  //Title.start('LBtn');
   $(".left-group-button").click(function() {
 		console.log('left-group-button clicked  '+this.id);
 		
