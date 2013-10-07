@@ -1,0 +1,34 @@
+.backoffice_title{
+	/*background-color:#AFA;*/
+	margin:10px;	
+}
+.backoffice_content{
+	/*background-color:#FAF;*/
+	margin:10px;
+	padding:10px;	
+}
+.backoffice_table{
+	border-style: solid;
+	border-width:1px;
+}
+#login_form{
+	
+	position:absolute;
+	width:200px;
+	height:200px;
+	top:50%;
+	left:50%;
+	margin-left:-100px;
+	margin-top:-100px;
+	
+	text-align:center;
+	line-height:20px;
+
+	padding:5px;
+	border:double;
+	background: rgb(255, 255, 255);
+	background: rgba(255, 255, 255, 1);
+	-webkit-box-shadow:  5px 5px 15px 1px rgba(0, 0, 0, 0.2);
+	box-shadow:  5px 5px 15px 1px rgba(0, 0, 0, 0.2);	
+}
+

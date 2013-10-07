@@ -1,0 +1,3 @@
+<p><?php echo $project_item['id'] ?></p>
+<p><?php echo $project_item['title'] ?></p>
+<p style="color:cyan;"><?php echo $project_item['year'] ?></p>

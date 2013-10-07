@@ -1,0 +1,32 @@
+@font-face {
+	font-family: 'LetterGothicStd';
+	src: url('/fonts/LetterGothicStd.eot?') format('eot'), 
+	     url('/fonts/LetterGothicStd.otf')  format('opentype'),
+	     url('/fonts/LetterGothicStd.woff') format('woff'), 
+	     url('/fonts/LetterGothicStd.ttf')  format('truetype'),
+	     url('/fonts/LetterGothicStd.svg#LetterGothicStd') format('svg');
+}
+/*@font-face {
+	font-family: 'LetterGothicStd-Slanted';
+	src: url('/fonts/LetterGothicStd-Slanted.eot?') format('eot'), 
+	     url('/fonts/LetterGothicStd-Slanted.otf')  format('opentype'),
+	     url('/fonts/LetterGothicStd-Slanted.woff') format('woff'), 
+	     url('/fonts/LetterGothicStd-Slanted.ttf')  format('truetype'),
+	     url('/fonts/LetterGothicStd-Slanted.svg#LetterGothicStd-Slanted') format('svg');
+}
+@font-face {
+	font-family: 'LetterGothicStd-BoldSlanted';
+	src: url('/fonts/LetterGothicStd-BoldSlanted.eot?') format('eot'), 
+	     url('/fonts/LetterGothicStd-BoldSlanted.otf')  format('opentype'),
+	     url('/fonts/LetterGothicStd-BoldSlanted.woff') format('woff'), 
+	     url('/fonts/LetterGothicStd-BoldSlanted.ttf')  format('truetype'),
+	     url('/fonts/LetterGothicStd-BoldSlanted.svg#LetterGothicStd-BoldSlanted') format('svg');
+}
+@font-face {
+	font-family: 'LetterGothicStd-Bold';
+	src: url('/fonts/LetterGothicStd-Bold.eot?') format('eot'), 
+	     url('/fonts/LetterGothicStd-Bold.otf')  format('opentype'),
+	     url('/fonts/LetterGothicStd-Bold.woff') format('woff'), 
+	     url('/fonts/LetterGothicStd-Bold.ttf')  format('truetype'),
+	     url('/fonts/LetterGothicStd-Bold.svg#LetterGothicStd-Bold') format('svg');
+}*/

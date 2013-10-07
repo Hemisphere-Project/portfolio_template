@@ -1,0 +1,8 @@
+<?php foreach ($projects as $project_item): ?>
+    <p><?php echo $project_item['id'] ?></p>
+    <p><?php echo $project_item['title'] ?></p>
+    <p><?php echo $project_item['year'] ?></p>
+    <p><?php echo $project_item['type'] ?></p>
+    <p><?php echo $project_item['description'] ?></p>
+    <p><?php echo $project_item['dir'] ?></p>
+<?php endforeach ?>
