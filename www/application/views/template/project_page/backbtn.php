@@ -5,7 +5,7 @@
 		if(document.referrer.search(window.location.host) != -1)
 			window.history.back();
 		else
-			document.location ="/index.php/projects/prjkts/";
+			document.location ="/index.php/projects/prjkts/";// to be checked with base_url
 	}
 </script>
 

@@ -1,13 +1,14 @@
 <div id="navbar">
 	<div id="left_group">
 		<ul>
-		<li><div id="LBtn" class="left-group-button">PROJECTS LIST</div></li>
-		<li><div id="TBtn" class="left-group-button">PROJECTS GALLERY</div></li>
-		<li><div id="IBtn" class="left-group-button">ABOUT PAGE</div></li>
+		<li><div id="LBtn" class="left-group-button"><a href="<?php echo site_url('projects/prjkts/projects_list'); ?>" target="_self">PROJECTS LIST</a></div></li>
+		<li><div id="TBtn" class="left-group-button"><a href="<?php echo site_url('projects/prjkts/projects_thumb_list'); ?>" target="_self">PROJECTS GALLERY</a></div></li>
+		<li><div id="IBtn" class="left-group-button"><a href="<?php echo site_url('projects/static_pages/about'); ?>" target="_self">ABOUT PAGE</a></div></li>
+		<li><div id="QMBtn" class="left-group-button"><a href="<?php echo site_url('projects/static_pages/help'); ?>" target="_self">HELP PAGE</a></div></li>
 		</ul>
 	</div>
 	<div id="right_group">
-		<div id="logo"  ><img src="./imgs/orangesmiley.gif"/></div>
+		<div id="logo"  ><img src="<?php echo base_url('imgs/orangesmiley.gif'); ?>"/></div>
 	</div>
 
 

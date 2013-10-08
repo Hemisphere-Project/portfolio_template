@@ -1,4 +1,3 @@
-// sticky footer
 $(window).bind("load", function() { 
        
        var footerHeight = 0,
@@ -37,25 +36,25 @@ $(window).bind("load", function() {
 
 $(document).ready(function() {
   $(".left-group-button").click(function() {
-		console.log('left-group-button clicked  '+this.id);
+		//console.log('left-group-button clicked  '+this.id);
 		
 		// put some ajax in these
 		switch(this.id){
 			case 'LBtn':
 				//$('body').load('/index.php/projects/prjkts/');
-				document.location.href="/index.php/projects/prjkts/projects_list"
+				//document.location.href="./index.php/projects/prjkts/projects_list"
 			break;
 			case 'TBtn':
 				//$('body').load('/index.php/projects/prjkts/projects_thumb_list');
-				document.location.href="/index.php/projects/prjkts/projects_thumb_list"
+				//document.location.href="./index.php/projects/prjkts/projects_thumb_list"
 			break;
 			case 'IBtn':
 				//$('body').load('/index.php/about');
-				document.location.href="/index.php/about"
+				//document.location.href="./index.php/about"
 			break;
 			case 'QMBtn':
 				//$('body').load('/index.php/help');
-				document.location.href="/index.php/help"
+				//document.location.href="./index.php/help"
 			break;
 			default : console.log('unknown button');
 		}
