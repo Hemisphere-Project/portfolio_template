@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="<?php echo base_url('css/backoffice.css'); ?>">
 	<script type="text/javascript" src="<?php echo base_url('js/lib/jquery-1.9.1.min.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('js/lib/jquery.masonry.min.js'); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('js/effects/stickyfooter.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('js/main.js'); ?>"></script>
 </head>
 <body>
