@@ -1,4 +1,4 @@
-<h2 class="backoffice_title" ><a href="/index.php/backoffice/projects">&lt; </a><?php echo $values['id'];?></h2>
+<h2 class="backoffice_title" ><a href="<?php echo site_url('backoffice/projects'); ?>">&lt; </a><?php echo $values['id'];?></h2>
 <div class="backoffice_content">
 <?php echo validation_errors(); ?>
 

@@ -28,22 +28,22 @@ class Backoffice_model extends CI_Model {
 		// retrieve the id just created
 		// WARNING here if two rows in the DB are completelly identical exept for the id
 		// the following line won't work (it will always retrive the line with the lowest id)
+		// FIXED by the order by id desc
+		$this->db->order_by('id', 'desc');
 		$row = $this->db->get_where('projects', $data)->row_array();
-		//echo 'id = '.$row['id'];
 		
 		// create the dir name
 		$data['dir'] = $row['id'].'-'.url_title($this->input->post('title'), 'dash', TRUE);
-		
 		// we create the media directory for the project "current dir is relative to index.php"
-		if(!mkdir('media/'.$data['dir'],0777)){
+		if(!mkdir(APPPATH.'/media/'.$data['dir'],0777)){
 			die('oooops unable to create media directory...');	
 		}
 		// we create the view directory for the project "current dir is relative to index.php"
-		if(!mkdir('application/views/projects/'.$data['dir'],0777)){
+		if(!mkdir(APPPATH.'/views/projects/'.$data['dir'],0777)){
 			die('oooops unable to create media directory...');	
 		}
 		// we copy the project page template from the views/template/project_page directory
-		copy("application/views/template/project_page/view.php",'application/views/projects/'.$data['dir']."/view.php");
+		copy(APPPATH.'/views/template/project_page/view.php',APPPATH.'/views/projects/'.$data['dir']."/view.php");
 		
 		//$res = $this->db->insert('projects', $data);
 		//return array( 'dir' => $data['dir'] , 'res' => $res);
@@ -95,9 +95,9 @@ class Backoffice_model extends CI_Model {
 		$this->db->where('id', $project['id']);
 		$this->db->delete('projects');
 		
-		// Move media and view.php to the project_bin folder
-		rename("media/".$project['dir'],"project_trashed/".$project['dir']);
-		rename("application/views/projects/".$project['dir'],"project_trashed/".$project['dir']."/".$project['dir']);
+		// Move media and view.php to the project_trashed folder
+		rename(APPPATH.'/media/'.$project['dir'],APPPATH.'/project_trashed/'.$project['dir']);
+		rename(APPPATH.'/views/projects/'.$project['dir'],APPPATH.'/project_trashed/'.$project['dir']."/".$project['dir']);
 		//rename("media/hello-yeah-ii", "project_bin/hello-yeah-ii");
 		//exec("mv -r /application/views/projects/".$project['dir']." /project_bin/".$project['dir']);
 	}

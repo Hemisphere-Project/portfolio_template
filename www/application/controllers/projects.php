@@ -6,6 +6,7 @@ class Projects extends CI_Controller {
 	const HELP = 'help';
 	const PRJKT_LIST = 'projects_list';
 	const PRJKT_T_LIST = 'projects_thumb_list';
+	const PRJKT_STRIP = 'projects_strip';
 	const PRJKT = 'project';
 	
 	public function __construct()
@@ -69,6 +70,9 @@ class Projects extends CI_Controller {
 				break;
 			case self::PRJKT_T_LIST:
 				$this->load->view('projects/thumb_list', $data);
+				break;
+			case self::PRJKT_STRIP:
+				$this->load->view('projects/strip', $data);
 				break;
 			case self::PRJKT:
 				$this->load->view('projects/'.$data['project_item']['dir'].'/view', $data);

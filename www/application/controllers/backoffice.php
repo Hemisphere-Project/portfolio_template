@@ -58,46 +58,80 @@ class Backoffice extends CI_Controller {
 			{	
 				
 				$res = $this->backoffice_model->create_project();
-				$upload_path = 'media/'.$res['dir'];
+				$upload_path = APPPATH.'/media/'.$res['dir'];
 				
-				$config['upload_path'] = $upload_path;
-				$config['allowed_types'] = '*';
+				$upload_config['upload_path'] = $upload_path;
+				$upload_config['allowed_types'] = '*';
 				
-				$this->load->library('upload', $config);
+				$this->load->library('upload', $upload_config);
 				
+				//GERER LE CAS OU IL N'Y A PAS DE MEDIA
 				foreach ($_FILES as $key => $value)
 				{
 					
 					if($key == 'thumbnail'){
-						//echo '(key|value)  ('.$key.'|'.print_r($value).')';
 						
 						//concatenate 'thumb' with the actual file extension
-						$config['file_name'] = 'thumb'.substr(strrchr($value['name'], "."),0);
+						$upload_config['file_name'] = 'thumb'.substr(strrchr($value['name'], "."),0);
 						
 						//update the 'thumb_name' db field
-						$this->backoffice_model->update_thumb_name($res['id'],$config['file_name']);
+						$this->backoffice_model->update_thumb_name($res['id'],$upload_config['file_name']);
+					
+						$this->doUpload($upload_config,$key);
+						
+						$this->generateThumbnail($upload_path,$upload_config['file_name']);
+						
 					
 					}else{
-						$config['file_name'] = null;
+						$upload_config['file_name'] = null;
+						
+						$this->doUpload($upload_config,$key);
+						///////////////////////////////////////////////////////////
+						
+						
+						
 					}
-						$this->upload->initialize($config);
-						if (!$this->upload->do_upload($key))
-						{
-							$errors = $this->upload->display_errors();
-							$error = array('error' => $this->upload->display_errors());
-							$this->load->view('backoffice/create', $error);
-	
-						}
-						else
-						{
-							// put some code for upload success here
-						}
+					
 				}
 				
 				redirect('/backoffice/projects', 'refresh');
 			}
 		}else{
 			redirect('/backoffice/login', 'refresh');	
+		}
+	}
+	
+	
+	public function generateThumbnail($path,$name){
+	
+		$config['image_library'] = 'gd2';
+		$config['source_image']	= $path.'/'.$name;
+		$config['create_thumb'] = FALSE;
+		$config['maintain_ratio'] = TRUE;
+		$config['width']	 = 180;
+		$config['height']	= 180;
+		
+		$this->load->library('image_lib', $config); 
+		
+		if ( ! $this->image_lib->resize())
+		{
+			echo $this->image_lib->display_errors();
+		}
+		$pos = strrchr($name, ".");
+	}
+	
+	public function doUpload($upload_config,$key){
+		$this->upload->initialize($upload_config);
+		if (!$this->upload->do_upload($key))
+		{
+			$errors = $this->upload->display_errors();
+			$error = array('error' => $this->upload->display_errors());
+			$this->load->view('backoffice/create', $error);
+
+		}
+		else
+		{
+			//success
 		}
 	}
 	

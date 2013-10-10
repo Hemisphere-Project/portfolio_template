@@ -1,4 +1,4 @@
-<h2 class="backoffice_title" ><a href="/index.php/backoffice">&lt; </a>Create a new piece</h2>
+<h2 class="backoffice_title" ><a href="<?php echo site_url('backoffice'); ?>">&lt; </a>Create a new project</h2>
 <div class="backoffice_content">
 <?php echo validation_errors(); ?>
 

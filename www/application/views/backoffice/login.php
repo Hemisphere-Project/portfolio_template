@@ -2,8 +2,8 @@
 <html>
  <head>
    <title>Login</title>
-   <link rel="stylesheet" href="/css/backoffice.css">
-    <link rel="stylesheet" href="/css/main.css">
+   <link rel="stylesheet" href="<?php echo base_url('css/backoffice.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('css/main.css'); ?>">
  </head>
  <body>
  	<div id="login_form">
