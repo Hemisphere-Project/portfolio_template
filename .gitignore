@@ -1,0 +1,17 @@
+
+# media #
+######################
+
+www/application/media
+www/application/project_trashed
+# www/application/views/projects
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

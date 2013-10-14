@@ -17,11 +17,12 @@ function delete_confirm(id){
    	<td style="font-weight:bold;"><a href=<?php echo site_url('backoffice/moveup').'/'.$project_item['id'].'/'.$project_item['position']?>>⋀</a></td>
    	<td><?php echo $project_item['position'] ?></td>
    	<td style="font-weight:bold;"><a href=<?php echo site_url('backoffice/movedown').'/'.$project_item['id'].'/'.$project_item['position']?>>⋁</a></td>
-    <td style="font-weight:bold;"><?php echo $project_item['title'] ?></td>
+   	<td><a href="<?php echo site_url('mediamanager/index').'/'.$project_item['id'].'/'.$project_item['dir'] ?>">❖</a></td>
+    <td style="font-weight:bold;"><a href="<?php echo site_url('backoffice/edit/').'/'.$project_item['id'] ?>"><?php echo $project_item['title'] ?></a></td>
     <td><?php echo $project_item['type'] ?></td>
     <td><?php echo $project_item['description_short'] ?></td>
     <td><?php echo $project_item['description_long'] ?></td>
-    <td>/media/<?php echo $project_item['dir'] ?></td>
+    <td><?php echo $project_item['dir'] ?></td>
     <td><?php echo $project_item['thumb_name'] ?></td>
     <td><?php echo $project_item['year'] ?></td>
     

@@ -33,8 +33,6 @@ class Backoffice extends CI_Controller {
 	
 	public function create()
 	{
-
-		// TODO ERROR MANAGEMENT
 		
 		$this->load->helper(array('form', 'url'));
 		
@@ -42,9 +40,10 @@ class Backoffice extends CI_Controller {
 			
 			$this->load->library('form_validation');
 			
-			$data['title'] = 'Create a new item';
+			$data['title'] = 'Create a new project';
 			
 			$this->form_validation->set_rules('title', 'Title', 'required');
+			//$this->form_validation->set_rules('thumbnail', 'Thumbnail', 'required');
 			
 			if ($this->form_validation->run() === FALSE)
 			{
@@ -64,8 +63,7 @@ class Backoffice extends CI_Controller {
 				$upload_config['allowed_types'] = '*';
 				
 				$this->load->library('upload', $upload_config);
-				
-				//GERER LE CAS OU IL N'Y A PAS DE MEDIA
+					
 				foreach ($_FILES as $key => $value)
 				{
 					
@@ -81,21 +79,59 @@ class Backoffice extends CI_Controller {
 						
 						$this->generateThumbnail($upload_path,$upload_config['file_name']);
 						
-					
-					}else{
-						$upload_config['file_name'] = null;
-						
-						$this->doUpload($upload_config,$key);
-						///////////////////////////////////////////////////////////
-						
-						
-						
 					}
 					
 				}
 				
 				redirect('/backoffice/projects', 'refresh');
 			}
+		}else{
+			redirect('/backoffice/login', 'refresh');	
+		}
+	}
+		
+	public function  media($id=FALSE)
+	{
+		
+		$this->load->helper(array('form', 'url'));
+	
+		if($this->session->userdata('logged_in') !== FALSE){
+			
+			
+			$data['title'] = 'add media';
+			if(empty($_POST))
+			{
+				$this->load->view('template/header', $data);
+				$this->load->view('template/navbar',$data);
+				$this->load->view('backoffice/media',array('error' => ' ' ,'id' => $id));
+				$this->load->view('template/footer');
+			}
+			else 
+			{
+				$dir = $this->backoffice_model->get_project($id)['dir'];
+				$upload_path = APPPATH.'/media/'.$dir;
+				
+				$upload_config['upload_path'] = $upload_path;
+				$upload_config['allowed_types'] = '*';
+				
+				$this->load->library('upload', $upload_config);
+				
+				//codeingiter can't do multi upload (with a single input field as dropzone serves)
+				//so we have to do single upload repetively
+				$files = $_FILES;
+				$cpt = count($_FILES['file']['name']);
+				for($i=0; $i<$cpt; $i++)
+				{
+					$_FILES['file']['name']= $files['file']['name'][$i];
+					$_FILES['file']['type']= $files['file']['type'][$i];
+					$_FILES['file']['tmp_name']= $files['file']['tmp_name'][$i];
+					$_FILES['file']['error']= $files['file']['error'][$i];
+					$_FILES['file']['size']= $files['file']['size'][$i];    
+					$this->doUpload($upload_config,'file');
+				}
+				
+				//redirect('/backoffice/projects', 'refresh');
+			}	
 		}else{
 			redirect('/backoffice/login', 'refresh');	
 		}
@@ -108,8 +144,8 @@ class Backoffice extends CI_Controller {
 		$config['source_image']	= $path.'/'.$name;
 		$config['create_thumb'] = FALSE;
 		$config['maintain_ratio'] = TRUE;
-		$config['width']	 = 180;
-		$config['height']	= 180;
+		$config['width']	 = 300;
+		$config['height']	= 300;
 		
 		$this->load->library('image_lib', $config); 
 		
@@ -117,7 +153,6 @@ class Backoffice extends CI_Controller {
 		{
 			echo $this->image_lib->display_errors();
 		}
-		$pos = strrchr($name, ".");
 	}
 	
 	public function doUpload($upload_config,$key){
@@ -166,13 +201,15 @@ class Backoffice extends CI_Controller {
 	}
 	
 	public function edit($id=FALSE){
+		
+		
 		$this->load->helper(array('form', 'url'));
 		
 		if($this->session->userdata('logged_in') !== FALSE){
 			
 			$this->load->library('form_validation');
 			
-			$data['title'] = 'Create a new item';
+			$data['title'] = 'edit project';
 			
 			$this->form_validation->set_rules('title', 'Title', 'required');
 			
@@ -189,7 +226,7 @@ class Backoffice extends CI_Controller {
 			else 
 			{	
 				// TODO ERROR MANAGEMENT
-				$this->backoffice_model->update_project();
+				$this->backoffice_model->update_project($id);
 				
 				redirect('/backoffice/projects', 'refresh');
 			}
@@ -204,6 +241,7 @@ class Backoffice extends CI_Controller {
 		if($this->session->userdata('logged_in') !== FALSE){
 			
 			$this->backoffice_model->remove_project($id);
+			
 			redirect('/backoffice/projects', 'refresh');
 		}else{
 			redirect('/backoffice/login', 'refresh');	

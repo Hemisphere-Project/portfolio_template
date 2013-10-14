@@ -68,7 +68,7 @@ class Backoffice_model extends CI_Model {
 		return $query->row_array();
 	}
 	
-	public function update_project(){
+	public function update_project($id){
 		
 		$data = array(
 			'id' => $this->input->post('id'),
@@ -78,7 +78,7 @@ class Backoffice_model extends CI_Model {
 			'description_short' => $this->input->post('description_short'),
 			'description_long' => $this->input->post('description_long'),
 		);
-		$this->db->where('id', $data['id']);
+		$this->db->where('id', $id);
 		$this->db->update('projects', $data);
 	}
 	
@@ -94,6 +94,10 @@ class Backoffice_model extends CI_Model {
 		// DB Delete
 		$this->db->where('id', $project['id']);
 		$this->db->delete('projects');
+		
+		
+		//$this->db->where('project_id', $project['id']);
+		///$this->db->delete('media');
 		
 		// Move media and view.php to the project_trashed folder
 		rename(APPPATH.'/media/'.$project['dir'],APPPATH.'/project_trashed/'.$project['dir']);

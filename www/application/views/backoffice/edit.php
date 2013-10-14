@@ -2,7 +2,7 @@
 <div class="backoffice_content">
 <?php echo validation_errors(); ?>
 
-<?php echo form_open_multipart('backoffice/edit');?>
+<?php echo form_open_multipart('backoffice/edit'.'/'.$values['id']);?>
 	<input type="input" name="id" value="<?php echo $values['id'];?>" readonly/><br/>
 	
 	<input type="input" name="title" value="<?php echo $values['title'];?>" readonly/><br />
@@ -14,7 +14,7 @@
 	<textarea rows="8" cols="100" name="description_long" /><?php echo $values['description_long'];?></textarea><br />
 	
 	<select id="input" name="year">
-		<option value="2017" <?php if( $values['year'] == 2017 ) echo 'selected="selected"';?> >2017</option>
+		<option value="2017" <?php if( $values['year'] == 2017 ) echo 'selected="selected"';?>>2017</option>
 		<option value="2016" <?php if( $values['year'] == 2016 ) echo 'selected="selected"';?>>2016</option>
 		<option value="2015" <?php if( $values['year'] == 2015 ) echo 'selected="selected"';?>>2015</option>
 		<option value="2014" <?php if( $values['year'] == 2014 ) echo 'selected="selected"';?>>2014</option>
