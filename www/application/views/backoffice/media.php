@@ -15,7 +15,7 @@
 		echo form_open_multipart('mediamanager/add'.'/'.$project_id.'/'.$project_dir, $attributes);      
 	?>    	
 		
-		<input style="float:right;" type="submit" name="submit" value="add media" /> 
+		<input style="float:right;" type="submit" name="submit" value="send" /> 
 	
 	</form>
 	

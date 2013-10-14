@@ -71,7 +71,7 @@ class MediaManager extends CI_Controller {
 				
 				$this->mediamanager_model->add_media($project_id,$project_dir,$_FILES['file']);
 			}
-			redirect('/backoffice', 'refresh');	// pour le moment
+			redirect('/mediamanager/index/'.$project_id.'/'.$project_dir, 'refresh'); // pour le moment marche pas
 		}else{
 			redirect('/backoffice/login', 'refresh');	
 		}	
