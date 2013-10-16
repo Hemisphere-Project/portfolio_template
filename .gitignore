@@ -1,4 +1,9 @@
 
+# netbeans #
+######################
+
+netbeans_meta
+
 # media #
 ######################
 
@@ -15,3 +20,4 @@ www/application/project_trashed
 .Trashes
 ehthumbs.db
 Thumbs.db
+/netbeans_meta/portfolio_template/nbproject/private/
