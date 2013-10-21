@@ -35,15 +35,15 @@ class Backoffice_model extends CI_Model {
 		// create the dir name
 		$data['dir'] = $row['id'].'-'.url_title($this->input->post('title'), 'dash', TRUE);
 		// we create the media directory for the project "current dir is relative to index.php"
-		if(!mkdir(APPPATH.'/media/'.$data['dir'],0777)){
+		if(!mkdir(APPPATH.'media/'.$data['dir'],0777)){
 			die('oooops unable to create media directory...');	
 		}
 		// we create the view directory for the project "current dir is relative to index.php"
-		if(!mkdir(APPPATH.'/views/projects/'.$data['dir'],0777)){
+		if(!mkdir(APPPATH.'views/projects/'.$data['dir'],0777)){
 			die('oooops unable to create media directory...');	
 		}
 		// we copy the project page template from the views/template/project_page directory
-		copy(APPPATH.'/views/template/project_page/view.php',APPPATH.'/views/projects/'.$data['dir']."/view.php");
+		copy(APPPATH.'views/template/project_page/view.php',APPPATH.'views/projects/'.$data['dir']."/view.php");
 		
 		//$res = $this->db->insert('projects', $data);
 		//return array( 'dir' => $data['dir'] , 'res' => $res);
@@ -100,8 +100,8 @@ class Backoffice_model extends CI_Model {
 		///$this->db->delete('media');
 		
 		// Move media and view.php to the project_trashed folder
-		rename(APPPATH.'/media/'.$project['dir'],APPPATH.'/project_trashed/'.$project['dir']);
-		rename(APPPATH.'/views/projects/'.$project['dir'],APPPATH.'/project_trashed/'.$project['dir']."/".$project['dir']);
+		rename(APPPATH.'media/'.$project['dir'],APPPATH.'project_trashed/'.$project['dir']);
+		rename(APPPATH.'views/projects/'.$project['dir'],APPPATH.'project_trashed/'.$project['dir']."/".$project['dir']);
 		//rename("media/hello-yeah-ii", "project_bin/hello-yeah-ii");
 		//exec("mv -r /application/views/projects/".$project['dir']." /project_bin/".$project['dir']);
 	}

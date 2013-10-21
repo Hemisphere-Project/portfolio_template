@@ -49,7 +49,7 @@ class MediaManager extends CI_Controller {
 	
 		if($this->session->userdata('logged_in') !== FALSE){
 			
-			$upload_path = APPPATH.'/media/'.$project_dir;
+			$upload_path = APPPATH.'media/'.$project_dir;
 			
 			$upload_config['upload_path'] = $upload_path;
 			$upload_config['allowed_types'] = '*';

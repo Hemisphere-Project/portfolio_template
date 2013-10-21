@@ -56,7 +56,7 @@ class MediaManager_model extends CI_Model {
 		// 3. definitivelty delete it 
 		
 		// here is the option 3.
-		unlink(APPPATH.'/media/'.$media['dir'].'/'.$media['file_name']);
+		unlink(APPPATH.'media/'.$media['dir'].'/'.$media['file_name']);
 	}
 	
 	// update media information

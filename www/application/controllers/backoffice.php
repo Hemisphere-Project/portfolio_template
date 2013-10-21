@@ -57,7 +57,7 @@ class Backoffice extends CI_Controller {
 			{	
 				
 				$res = $this->backoffice_model->create_project();
-				$upload_path = APPPATH.'/media/'.$res['dir'];
+				$upload_path = APPPATH.'media/'.$res['dir'];
 				
 				$upload_config['upload_path'] = $upload_path;
 				$upload_config['allowed_types'] = '*';
@@ -90,52 +90,52 @@ class Backoffice extends CI_Controller {
 		}
 	}
 		
-	public function  media($id=FALSE)
-	{
-		
-		$this->load->helper(array('form', 'url'));
-	
-		if($this->session->userdata('logged_in') !== FALSE){
-			
-			
-			$data['title'] = 'add media';
-			if(empty($_POST))
-			{
-				$this->load->view('template/header', $data);
-				$this->load->view('template/navbar',$data);
-				$this->load->view('backoffice/media',array('error' => ' ' ,'id' => $id));
-				$this->load->view('template/footer');
-			}
-			else 
-			{
-				$dir = $this->backoffice_model->get_project($id)['dir'];
-				$upload_path = APPPATH.'/media/'.$dir;
-				
-				$upload_config['upload_path'] = $upload_path;
-				$upload_config['allowed_types'] = '*';
-				
-				$this->load->library('upload', $upload_config);
-				
-				//codeingiter can't do multi upload (with a single input field as dropzone serves)
-				//so we have to do single upload repetively
-				$files = $_FILES;
-				$cpt = count($_FILES['file']['name']);
-				for($i=0; $i<$cpt; $i++)
-				{
-					$_FILES['file']['name']= $files['file']['name'][$i];
-					$_FILES['file']['type']= $files['file']['type'][$i];
-					$_FILES['file']['tmp_name']= $files['file']['tmp_name'][$i];
-					$_FILES['file']['error']= $files['file']['error'][$i];
-					$_FILES['file']['size']= $files['file']['size'][$i];    
-					$this->doUpload($upload_config,'file');
-				}
-				
-				//redirect('/backoffice/projects', 'refresh');
-			}	
-		}else{
-			redirect('/backoffice/login', 'refresh');	
-		}
-	}
+//	public function  media($id=FALSE)
+//	{
+//		
+//		$this->load->helper(array('form', 'url'));
+//	
+//		if($this->session->userdata('logged_in') !== FALSE){
+//			
+//			
+//			$data['title'] = 'add media';
+//			if(empty($_POST))
+//			{
+//				$this->load->view('template/header', $data);
+//				$this->load->view('template/navbar',$data);
+//				$this->load->view('backoffice/media',array('error' => ' ' ,'id' => $id));
+//				$this->load->view('template/footer');
+//			}
+//			else 
+//			{
+//				$dir = $this->backoffice_model->get_project($id)['dir'];
+//				$upload_path = APPPATH.'media/'.$dir;
+//				
+//				$upload_config['upload_path'] = $upload_path;
+//				$upload_config['allowed_types'] = '*';
+//				
+//				$this->load->library('upload', $upload_config);
+//				
+//				//codeingiter can't do multi upload (with a single input field as dropzone serves)
+//				//so we have to do single upload repetively
+//				$files = $_FILES;
+//				$cpt = count($_FILES['file']['name']);
+//				for($i=0; $i<$cpt; $i++)
+//				{
+//					$_FILES['file']['name']= $files['file']['name'][$i];
+//					$_FILES['file']['type']= $files['file']['type'][$i];
+//					$_FILES['file']['tmp_name']= $files['file']['tmp_name'][$i];
+//					$_FILES['file']['error']= $files['file']['error'][$i];
+//					$_FILES['file']['size']= $files['file']['size'][$i];    
+//					$this->doUpload($upload_config,'file');
+//				}
+//				
+//				//redirect('/backoffice/projects', 'refresh');
+//			}	
+//		}else{
+//			redirect('/backoffice/login', 'refresh');	
+//		}
+//	}
 	
 	
 	public function generateThumbnail($path,$name){
@@ -148,6 +148,7 @@ class Backoffice extends CI_Controller {
 		$config['height']	= 300;
 		
 		$this->load->library('image_lib', $config); 
+                //$this->image_lib->initialize($config);
 		
 		if ( ! $this->image_lib->resize())
 		{
