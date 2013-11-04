@@ -28,7 +28,7 @@ class MediaManager extends CI_Controller {
 			$data['project_dir'] = $project_dir;
 
 			$this->load->view('template/header', $data);
-			$this->load->view('template/navbar',$data);
+			$this->load->view('template/navbarH',$data);
 			$this->load->view('backoffice/media',$data);
 			$this->load->view('template/footer');
 	
@@ -108,8 +108,32 @@ class MediaManager extends CI_Controller {
 			redirect('/backoffice/login', 'refresh');	
 		}
 	}
-	public function moveup($project_id){}
-	public function movedown($project_id){}
+	public function moveup($id,$project_id,$project_dir,$position){
+            
+            $this->load->helper('url');
+            if($this->session->userdata('logged_in') !== FALSE){
+
+                    $this->mediamanager_model->update_media_position($id,$project_id,$position,'up');
+                    redirect('/mediamanager/index/'.$project_id.'/'.$project_dir, 'refresh'); // pour le moment
+            }else{
+                    redirect('/backoffice/login', 'refresh');	
+            }
+            
+            
+        }
+	public function movedown($id,$project_id,$project_dir,$position){
+            
+            $this->load->helper('url');
+
+            if($this->session->userdata('logged_in') !== FALSE){
+
+                    $this->mediamanager_model->update_media_position($id,$project_id,$position,'down');
+                    redirect('/mediamanager/index/'.$project_id.'/'.$project_dir, 'refresh'); // pour le moment
+            }else{
+                    redirect('/backoffice/login', 'refresh');	
+            }
+            
+        }
 	
 
 }

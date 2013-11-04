@@ -28,8 +28,13 @@ class Projects extends CI_Controller {
 	
 	public function prjkts($listType=self::PRJKT_T_LIST,$sort_field='default',$sort_way='default'){
 		
-		$data['projects'] = $this->projects_model->get_projects($sort_field,$sort_way);
-		$data['title'] = 'Project List';
+                if($listType==self::PRJKT_STRIP){
+                    $data['projects'] = $this->projects_model->get_projects($sort_field,$sort_way,TRUE);
+                }else{
+                    $data['projects'] = $this->projects_model->get_projects($sort_field,$sort_way);
+                }
+		
+                $data['title'] = 'Project List';
 		$this->buildPage($listType,$data);
 	}
 	
@@ -52,7 +57,7 @@ class Projects extends CI_Controller {
 	private function buildPage($pageType,$data){
 		
 		$this->load->view('template/header', $data);
-		$this->load->view('template/navbar',$data);
+		$this->load->view('template/navbarV',$data);
 		
 		
 		switch ($pageType) {

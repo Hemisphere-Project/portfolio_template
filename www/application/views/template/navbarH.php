@@ -1,4 +1,4 @@
-<div id="navbar">
+<div id="navbar-h">
 	<div id="left_group">
 		<ul>
 		<li><div id="LBtn" class="left-group-button"><a href="<?php echo site_url('projects/prjkts/projects_list'); ?>" target="_self">PROJECTS LIST</a></div></li>

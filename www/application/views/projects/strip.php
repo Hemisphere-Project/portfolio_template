@@ -18,7 +18,10 @@
     </div>-->
 <?php foreach ($projects as $project_item): ?>
     <div class="strip_element">
-    		<img draggable="false" class="strip_img" src=<?php echo base_url('application/media/').'/'.$project_item['dir'].'/'.$project_item['thumb_name']?> />
+        <a href=<?php echo site_url('projects/prjkt/').'/'.$project_item['dir']?> >
+    		<!--<img draggable="false" class="strip_img" src=<?php echo base_url('application/media/').'/'.$project_item['dir'].'/'.$project_item['thumb_name']?> />-->
+    		<img draggable="false" class="strip_img" src=<?php echo base_url('application/media/').'/'.$project_item['dir'].'/'.$project_item['file_name']?> />
+        </a>
     </div>
 <?php endforeach ?>
 </div>

@@ -32,10 +32,13 @@
 	
 	<table class="backoffice_table">
 	<?php foreach ($medias as $media): ?>
-	   <tr>
+            
+                <tr><td><?php echo $media['project_id'] ?></td>
 		<td><?php echo $media['id'] ?></td>
 		<td style="font-weight:bold;"><a onclick=delete_confirm("<?php echo $media['id'].'","'.$project_id.'","'.$project_dir?>") >x</a></td>
-		<td><?php echo $media['project_id'] ?></td>
+                <td style="font-weight:bold;"><a href=<?php echo site_url('mediamanager/moveup').'/'.$media['id'].'/'.$media['project_id'].'/'.$project_dir.'/'.$media['position']?>>⋀</a></td>
+                <td><?php echo $media['position'] ?></td>
+                <td style="font-weight:bold;"><a href=<?php echo site_url('mediamanager/movedown').'/'.$media['id'].'/'.$media['project_id'].'/'.$project_dir.'/'.$media['position']?>>⋁</a></td>
 		<td><?php echo $media['file_name'] ?></td>
 		<td><?php echo $media['type'] ?></td>
 		<td><?php echo $media['dir'] ?></td>

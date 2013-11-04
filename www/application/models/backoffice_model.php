@@ -24,13 +24,18 @@ class Backoffice_model extends CI_Model {
 		);
 		
 		$this->db->insert('projects', $data);
-		
+                
+                
 		// retrieve the id just created
 		// WARNING here if two rows in the DB are completelly identical exept for the id
 		// the following line won't work (it will always retrive the line with the lowest id)
 		// FIXED by the order by id desc
 		$this->db->order_by('id', 'desc');
 		$row = $this->db->get_where('projects', $data)->row_array();
+                
+                //set initial position NB a trigger would have been better but not easily implement because of the AUTO_INC of id
+                $this->db->where('id', $row['id']);
+		$this->db->update('projects', array('position' => $row['id']));
 		
 		// create the dir name
 		$data['dir'] = $row['id'].'-'.url_title($this->input->post('title'), 'dash', TRUE);
@@ -109,19 +114,42 @@ class Backoffice_model extends CI_Model {
 	public function update_project_position($id,$position,$direction){
 		
 		if($id != null && $position != null && ($direction === 'up' || $direction === 'down')){
-			
+                        
+                        
 			if($direction == 'up'){
 				$value = $position - 1;
 				$data = array('position' => $value);
-				$this->db->where('id', $id);
-				$this->db->update('projects', $data);
+//                                $old_id_res = $this->db->get_where('projects', $data)->row_array();
+//                                if(!empty($old_id_res)){//which means the row exist (always the case exept on boundaries)
+//                                    // update current row
+//                                    $this->db->where('id', $id);
+//                                    $this->db->update('projects', $data);
+//                                    
+//                                    // update old row
+//                                    $this->db->where('id', $old_id_res['id']);
+//                                    $this->db->update('projects', array('position' => $position));
+//                                }
+				//$this->db->where('id', $id);
+				//$this->db->update('projects', $data);
 				
 			}else if($direction == 'down'){
 				$value = $position + 1;
 				$data = array('position' => $value);
-				$this->db->where('id', $id);
-				$this->db->update('projects', $data);	
+
+				//$this->db->where('id', $id);
+				//$this->db->update('projects', $data);	
 			}
+                        
+                        $old_id_res = $this->db->get_where('projects', $data)->row_array();
+                        if(!empty($old_id_res)){//which means the row exist (always the case exept on boundaries)
+                            // update current row
+                            $this->db->where('id', $id);
+                            $this->db->update('projects', $data);
+
+                            // update old row
+                            $this->db->where('id', $old_id_res['id']);
+                            $this->db->update('projects', array('position' => $position));
+                        }
 		}
 	}
 	
