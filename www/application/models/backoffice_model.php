@@ -48,7 +48,8 @@ class Backoffice_model extends CI_Model {
 			die('oooops unable to create media directory...');	
 		}
 		// we copy the project page template from the views/template/project_page directory
-		copy(APPPATH.'views/template/project_page/view.php',APPPATH.'views/projects/'.$data['dir']."/view.php");
+//		copy(APPPATH.'views/template/project_page/view.php',APPPATH.'views/projects/'.$data['dir']."/view.php");
+		copy(APPPATH.'views/template/project_page/view.php',APPPATH.'views/projects/'.$data['dir']."/view_strip.php");
 		
 		//$res = $this->db->insert('projects', $data);
 		//return array( 'dir' => $data['dir'] , 'res' => $res);

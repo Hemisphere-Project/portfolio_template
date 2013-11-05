@@ -44,7 +44,16 @@ $(document).ready(function(){
         
         if(MOUSE_DOWN){
             var currentPos = $('#strip_container').offset();
-            $('#strip_container').offset({top:currentPos.top ,left:currentPos.left + dX})
+            //boundaries
+            rightBound = -(COUNT-2)*$('.strip_element').width();
+
+            if(currentPos.left + dX > 0){
+                $('#strip_container').offset({top:currentPos.top ,left:0});
+            }else if(currentPos.left + dX < rightBound){
+                $('#strip_container').offset({top:currentPos.top ,left:rightBound});
+            }else{
+                $('#strip_container').offset({top:currentPos.top ,left:currentPos.left + dX});
+            }
         }
         
     })
@@ -62,6 +71,7 @@ function scrollEnd(){
 function snapPosition(){
     var currentPos = $('#strip_container').offset();
     //console.log(Math.floor(Math.abs(currentPos.left - previousPos.left)/(windowWidth/4)));
+    
     var diff = (currentPos.left - previousPos.left)/(windowWidth/TRIGGER);
     
     if(diff >=1 && dX >0){
@@ -116,15 +126,20 @@ function moveElement(element,pos){
         top:pos.top,
         left:pos.left
   
-    },600,"easeOutExpo",function(){
+    },1000,"easeOutExpo",function(){//easeOutExpo 600
         // on animation complete
     });
 }
 
 $(window).resize(adaptToWindow);
 
+function leftArrowClick(){
+    moveElement($('#strip_container'), {top:previousPos.top ,left:previousPos.left + windowWidth});
+}
 
-
+function rightArrowClick(){
+    moveElement($('#strip_container'), {top:previousPos.top ,left:previousPos.left - windowWidth});
+}
 
 function adaptToWindow(){
     marginLeft = $('.strip_element').css('margin-left').replace(/[^-\d\.]/g, '');
@@ -137,7 +152,7 @@ function adaptToWindow(){
     windowHeight = $(window).height();
     $('.strip_element').width(windowWidth - marginLeft - marginRight - paddingLeft - paddingRight);
     $('#strip_container').width(COUNT*$('.strip_element').width());
-    
+    $('.strip_element').css("line-height",$('.strip_element').height()+"px");
    // adaptImages();
     //console.log($('.strip_element').width()+"  "+$('#strip_container').width())
 }

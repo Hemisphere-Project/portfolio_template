@@ -29,7 +29,11 @@ class Projects extends CI_Controller {
 	public function prjkts($listType=self::PRJKT_T_LIST,$sort_field='default',$sort_way='default'){
 		
                 if($listType==self::PRJKT_STRIP){
-                    $data['projects'] = $this->projects_model->get_projects($sort_field,$sort_way,TRUE);
+                    //$data['projects'] = $this->projects_model->get_projects($sort_field,$sort_way,TRUE);
+                    $data['projects'] = $this->projects_model->get_projects($sort_field,$sort_way,FALSE);
+                    foreach ($data['projects'] as $key=>$project){
+                        $data['projects'][$key]['media'] = $this->projects_model->get_medias($project['id']);
+                    }
                 }else{
                     $data['projects'] = $this->projects_model->get_projects($sort_field,$sort_way);
                 }
@@ -38,9 +42,11 @@ class Projects extends CI_Controller {
 		$this->buildPage($listType,$data);
 	}
 	
-	public function prjkt($dir){
+	public function prjkt($id){
 		
-		$data['project_item'] = $this->projects_model->get_project($dir);
+                //$data['project_item'] = $this->projects_model->get_project($id);
+		$data['project_item'] = $this->projects_model->get_project($id,TRUE);
+                
 		if (empty($data['project_item']))
 		{
 			show_404();
@@ -51,13 +57,15 @@ class Projects extends CI_Controller {
 		$data['type'] = $data['project_item']['type'];
 		$data['description_long'] = $data['project_item']['description_long'];
 	
-		$this->load->view('projects/'.$data['project_item']['dir'].'/view', $data);
+		//$this->load->view('projects/'.$data['project_item']['dir'].'/view', $data);
+                $this->load->view('projects/'.$data['project_item']['dir'].'/view_strip', $data);
 	}
 	
 	private function buildPage($pageType,$data){
 		
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navbarV',$data);
+                $this->load->view('template/navArrows',$data);
 		
 		
 		switch ($pageType) {

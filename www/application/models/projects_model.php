@@ -45,10 +45,30 @@ class Projects_model extends CI_Model {
         
 	
 	//retrieve a single project
-	public function get_project($dir){// to be replaced by id
+	public function get_project($id,$return_medias=FALSE){// to be replaced by id
 		
-		$query = $this->db->get_where('projects', array('dir' => $dir));
+            
+            if($return_medias){
+                $project_query = $this->db->get_where('projects', array('id' => $id));
+                $project_array = $project_query->row_array();
+                $this->db->order_by("position", "asc");
+                $media_query = $this->db->get_where('media', array('project_id' => $id));
+                $media_array = $media_query->result_array();
+                
+                $project_array['media'] = $media_array;
+                
+		return $project_array;
+            }else{
+		$query = $this->db->get_where('projects', array('id' => $id));
 		return $query->row_array();
+            }
 	
+	}
+        // get every media from a project
+	public function get_medias($project_id)
+	{
+		$this->db->order_by("position", "asc");
+		$query = $this->db->get_where('media',array('project_id' => $project_id));
+		return $query->result_array();
 	}
 }
