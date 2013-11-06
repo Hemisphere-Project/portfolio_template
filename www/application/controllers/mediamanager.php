@@ -27,10 +27,10 @@ class MediaManager extends CI_Controller {
 			$data['project_id'] = $project_id;
 			$data['project_dir'] = $project_dir;
 
-			$this->load->view('template/header', $data);
-			$this->load->view('template/navbarH',$data);
+			$this->load->view('backoffice/header', $data);
+			//$this->load->view('template/navbarH',$data);
 			$this->load->view('backoffice/media',$data);
-			$this->load->view('template/footer');
+			$this->load->view('backoffice/footer');
 	
 		}else{
 			redirect('/backoffice/login', 'refresh');	
@@ -69,9 +69,12 @@ class MediaManager extends CI_Controller {
 				$_FILES['file']['size']= $files['file']['size'][$i];    
 				$this->doUpload($upload_config,'file');
 				
+                                //TODO Check if the dimensions à higher than 1920x1200
+                                //$this->resizeImage($upload_path,$_FILES['file']['name']);
+                                
 				$this->mediamanager_model->add_media($project_id,$project_dir,$_FILES['file']);
 			}
-			redirect('/backoffice', 'refresh'); // pour le moment marche pas
+			//redirect('/backoffice', 'refresh'); // pour le moment marche pas
                         //redirect('/mediamanager/index/'.$project_id.'/'.$project_dir, 'refresh'); // pour le moment marche pas
 		}else{
 			redirect('/backoffice/login', 'refresh');	
@@ -97,6 +100,38 @@ class MediaManager extends CI_Controller {
 			//success
 		}
 	}
+        
+       public function resizeImage($path,$name){
+                if(isset($resize_config)){
+                    unset($resize_config);
+                }
+           
+                $resize_config['image_library'] = 'gd2';
+		$resize_config['source_image']	= $path.'/'.$name;
+                //$resize_config['new_image']	= $path.'/salut'.$name;
+		$resize_config['maintain_ratio'] = TRUE;
+                
+                list($width, $height) = getimagesize($resize_config['source_image']);
+                if($width > 1920){
+                        $resize_config['width']	= 1920;
+                }else if ($height > 1200){ 
+                	$resize_config['height'] = 1200;
+                }else{
+                    return false;//we don't need to resize the image
+                }
+		
+		$this->load->library('image_lib', $resize_config); 
+                $this->image_lib->clear();
+                $this->image_lib->initialize($resize_config);
+		
+		if ( ! $this->image_lib->resize())
+		{
+			echo $this->image_lib->display_errors();
+		}
+                
+                return true;
+            
+        }
 	
 	public function remove($id,$project_id,$project_dir){
 		$this->load->helper('url');

@@ -37,8 +37,8 @@
 	<br />
 	<br />
 	
-	<label for="thumbnail">thumbnail</label> <br />
-	<input type="file" name="thumbnail" accept="image/*" /><br /><br />	
+	<!--<label for="thumbnail">thumbnail</label> <br />
+	<input type="file" name="thumbnail" accept="image/*" /><br /><br />-->	
 
 	
 	<input style="float:right;" type="submit" name="submit" value="Create project" /> 

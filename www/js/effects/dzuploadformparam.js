@@ -11,6 +11,7 @@ Dropzone.options.dzUploadform = {
   uploadMultiple: true,
   parallelUploads: 100,
   maxFiles:100,
+  acceptedFiles:"image/*",
   // The setting up of the dropzone
   init: function() {
 	var myDropzone = this;
@@ -32,6 +33,7 @@ Dropzone.options.dzUploadform = {
 	});
 	this.on("successmultiple", function(files, response) {
 			console.log("successmultiple"+files+"  "+response);
+                        window.location.reload();
 	  // Gets triggered when the files have successfully been sent.
 	  // Redirect user or notify of success.
 	});

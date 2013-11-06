@@ -2,7 +2,7 @@
 <script src="<?php echo base_url('js/lib/dropzone.js'); ?>"></script>
 <script src="<?php echo base_url('js/effects/dzuploadformparam.js'); ?>"></script>
 
-<h2 class="backoffice_title" ><a href="<?php echo site_url('backoffice'); ?>">&lt; </a>add media</h2>
+<h2 class="backoffice_title"><a href="<?php echo site_url('backoffice'); ?>">&lt; </a>add media</h2>
 <div class="backoffice_content">
 	
 	

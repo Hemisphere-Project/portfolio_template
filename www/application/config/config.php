@@ -14,8 +14,9 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost:80/repository/miscellaneous/2013/portfolio_template/www/';
-//$config['base_url']	= 'http://192.168.0.14:8888/repository/miscellaneous/2013/portfolio_template/www/';
+//$config['base_url']	= 'http://localhost:80/repository/miscellaneous/2013/portfolio_template/www/';
+//$config['base_url']	= 'http://lucile.alainbarthelemy.com';
+$config['base_url']	= 'http://192.168.0.14:8888/repository/miscellaneous/2013/portfolio_template/www/';
 
 /*
 |--------------------------------------------------------------------------

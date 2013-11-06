@@ -39,10 +39,10 @@ class Backoffice extends CI_Controller {
 			
 			if ($this->form_validation->run() === FALSE)
 			{
-				$this->load->view('template/header', $data);
-				$this->load->view('template/navbarH',$data);
+				$this->load->view('backoffice/header', $data);
+				//$this->load->view('template/navbarH',$data);
 				$this->load->view('backoffice/create',array('error' => ' ' ));
-				$this->load->view('template/footer');
+				$this->load->view('backoffice/footer');
 				
 			}
 			else 
@@ -102,6 +102,8 @@ class Backoffice extends CI_Controller {
 			echo $this->image_lib->display_errors();
 		}
 	}
+        
+
 	
 	public function doUpload($upload_config,$key){
 		$this->upload->initialize($upload_config);
@@ -133,11 +135,11 @@ class Backoffice extends CI_Controller {
 			
 			
 			//if ($this->form_validation->run() === FALSE){
-			$this->load->view('template/header', $data);
-			$this->load->view('template/navbarH',$data);
+			$this->load->view('backoffice/header', $data);
+			//$this->load->view('template/navbarH',$data);
 			$this->load->view('backoffice/logout', $data);
 			$this->load->view('backoffice/list', $data);
-			$this->load->view('template/footer');
+			$this->load->view('backoffice/footer');
 			//}else{
 				
 			//	$this->backoffice_model->modify_project();	
@@ -165,10 +167,10 @@ class Backoffice extends CI_Controller {
 			{
 				$values = $this->backoffice_model->get_project($id);
 				
-				$this->load->view('template/header', $data);
-				$this->load->view('template/navbarH',$data);
+				$this->load->view('backoffice/header', $data);
+				//$this->load->view('template/navbarH',$data);
 				$this->load->view('backoffice/edit',array('values' => $values));
-				$this->load->view('template/footer');
+				$this->load->view('backoffice/footer');
 				
 			}
 			else 
