@@ -46,7 +46,7 @@
                 <p>
                     <div class="project_info">
                         <div class="project_info_content">
-                            <p><b><?php echo $project_item['title'] ?></b></p>
+                            <p style="font-weight:400"><?php echo $project_item['title'] ?></p>
                             <p> <?php echo $project_item['year'] ?></p>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 <div id="about_content">
-<p>Lucile Vareilles</p>
+<p style="font-weight:400">Lucile Vareilles</p>
 </br>
 <p>––</p>
 </br>
@@ -9,7 +9,7 @@
 </br>
 <p>––</p>
 </br>
-<p><strong>Exhibitions</strong></p> 
+<p style="font-weight:400">Exhibitions</p> 
 </br>
 <p>2013 — subsitu @ quai St Vincent, Lyon</p>
 <p>2013 — copie copain club @ www.copie-copains-club.net
@@ -24,7 +24,7 @@
 <p>2010 — Red Stroop @ Biennial International Design of St Etienne</p>
 <p>2010 — Ceci n'est pas la fiac @ www.lafiac.com</p>
 <br/>
-<p><strong>Exhibitions</strong></p> 
+<p style="font-weight:400">Exhibitions</p> 
 </br>
 <p>2013 — subsitu @ quai St Vincent, Lyon</p>
 <p>2013 — copie copain club @ www.copie-copains-club.net
@@ -39,7 +39,7 @@
 <p>2010 — Red Stroop @ Biennial International Design of St Etienne</p>
 <p>2010 — Ceci n'est pas la fiac @ www.lafiac.com</p>
 </br>
-<p><strong>Exhibitions</strong></p> 
+<p style="font-weight:400">Exhibitions</p> 
 </br>
 <p>2013 — subsitu @ quai St Vincent, Lyon</p>
 <p>2013 — copie copain club @ www.copie-copains-club.net
